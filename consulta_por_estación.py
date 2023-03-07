@@ -15,6 +15,7 @@ subset = df.loc[filtro, ['FECHA', 'VARIABLE', estacion]]
 merged_data = subset.pivot(index='FECHA', columns='VARIABLE', values=estacion)
 #merged_data.columns.name = None  # Eliminar el nombre de la columna de variables
 
+
 print(merged_data)
 
-merged_data.to_csv('coban.csv')
+#merged_data.to_csv('coban.csv')

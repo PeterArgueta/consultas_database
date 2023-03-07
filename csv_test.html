@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html lang="en">
+<html>
+
+<head>
+  <title>Test</title>
+
+</head>
+
+<body>
+    <script type="text/javascript">
+      function processData(csv) {
+        let data = csv.split(/\r\n|\n/).map(v => v.split(','));
+        let headers = data.shift();
+        let table = document.createElement('table');
+        let thead = document.createElement('thead');
+        table.appendChild(thead);
+        thead.innerHTML = '<tr><th>' + headers.join('</th><th>') + '</th></tr>';
+        let tbody = document.createElement('tbody');
+        table.appendChild(tbody);
+        for (let row of data) {
+          tbody.innerHTML += '<tr><td>' + row.join('</td><td>') + '</td></tr>';
+        }
+        document.body.appendChild(table);
+        // Add download button
+        const csvData = headers.join(",") + "\n" + data.map(row => row.join(",")).join("\n");
+        const downloadButton = document.createElement('button');
+        downloadButton.innerHTML = 'Download as CSV';
+        downloadButton.onclick = function() {
+          const blob = new Blob([csvData], {type: 'text/csv'});
+          const url = window.URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.setAttribute('href', url);
+          a.setAttribute('download', 'data.csv');
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          window.URL.revokeObjectURL(url);
+        };
+        document.body.appendChild(downloadButton);
+      }
+      // I uploaded the CSV to a personal repo for this example,
+      // but you CAN use a local file as long as you *serve* it
+      fetch("https://raw.githubusercontent.com/PeterArgueta/Folium_clima/master/data/automaticas.csv")
+        .then(res => res.text())
+        .then(text => processData(text));
+    </script>
+  </body>
+  
+
+</html>
