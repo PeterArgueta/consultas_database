@@ -4,11 +4,52 @@
 <html>
 
 <head>
-  <title>Test</title>
+  <title>Datos mensuales</title>
 
 </head>
-
 <body>
+    <style>
+      /* Estilos para la tabla */
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+  
+      table th,
+      table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: center;
+      }
+  
+      table th {
+        background-color: #0074D9;
+        color: white;
+        text-align: center;
+        font-weight: bold;
+      }
+  
+      /* Estilos para el botón de descarga */
+      button {
+        background-color: #0074D9;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        padding: 10px 20px;
+        font-size: 16px;
+        margin-top: 20px;
+        display: block;
+        margin: 20px auto 0;
+      }
+  
+      button:hover {
+        background-color: #005ca9;
+      }
+    </style>
+  
     <script type="text/javascript">
       function processData(csv) {
         let data = csv.split(/\r\n|\n/).map(v => v.split(','));
@@ -47,6 +88,7 @@
         .then(text => processData(text));
     </script>
   </body>
+  
   
 
 </html>
