@@ -18,7 +18,7 @@ first_day_of_last_month = latest_date.replace(day=1) - pd.DateOffset(months=1)
 # Filtrar los datos para que solo incluyan los del último mes
 last_month_data = df[df['FECHA'] >= first_day_of_last_month]
 
-ID=json.load(open('stationsname.txt'))
+ID=json.load(open('stationsname.json'))
 
 for k in ID:
     # Pivotear los datos para tener una columna por variable de interés
