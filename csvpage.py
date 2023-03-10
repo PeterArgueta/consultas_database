@@ -1,6 +1,6 @@
 import json
 
-ID=json.load(open('stationsname.txt'))
+ID=json.load(open('stationsname.json'))
 directory="outputhtml/"
 
 for k in ID: 
